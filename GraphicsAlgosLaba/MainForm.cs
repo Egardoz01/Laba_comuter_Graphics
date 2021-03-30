@@ -17,7 +17,9 @@ namespace GraphicsAlgosLaba
         private bool is_paint;
         private Point p_begin;
         private Point p_end;
-        private Panel drawind_panel;
+
+        private KeyValuePair<double,double> p_begin_double;
+        private KeyValuePair<double, double> p_end_double;
         public MainForm()
         {
             InitializeComponent();
@@ -47,7 +49,6 @@ namespace GraphicsAlgosLaba
         {
             if (is_begin)
             {
-                is_paint = false;
                 is_begin = false;
                 p_begin = e.Location;
             }
@@ -58,21 +59,22 @@ namespace GraphicsAlgosLaba
                 label2.Text = $"Конец=({p_end.X}, {p_end.Y})";
                 is_begin = true;
                 is_paint = true;
-                panel1.Refresh();
+                panelLineWithIntChords.Refresh();
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs pea)
+        private void paint_Line_With_IntChords(Graphics g)
         {
             if (is_paint)
             {
+                is_paint = false;
                 //e.Graphics.DrawLine(new Pen(new SolidBrush(Color.Black)),p_begin, p_end);
 
                 int x = 0;
                 int y = 0;
                 int a = p_end.X - p_begin.X;
                 int b = p_end.Y - p_begin.Y;
-                int x_mnoj = 1, y_mnoj=1;
+                int x_mnoj = 1, y_mnoj = 1;
                 if (a < 0)
                 {
                     a = -a;
@@ -91,7 +93,7 @@ namespace GraphicsAlgosLaba
                     while (x < a)
                     {
 
-                        Plot(pea.Graphics, x * x_mnoj + p_begin.X, y * y_mnoj + p_begin.Y);
+                        Plot(g, x * x_mnoj + p_begin.X, y * y_mnoj + p_begin.Y);
 
                         if (e > 0)
                         {
@@ -114,7 +116,7 @@ namespace GraphicsAlgosLaba
                     while (x < a)
                     {
 
-                        Plot(pea.Graphics, x * x_mnoj + p_begin.X, y * y_mnoj + p_begin.Y);
+                        Plot(g, x * x_mnoj + p_begin.X, y * y_mnoj + p_begin.Y);
 
                         if (e > 0)
                         {
@@ -133,6 +135,127 @@ namespace GraphicsAlgosLaba
             }
         }
 
+        private void panel1_Paint(object sender, PaintEventArgs pea)
+        {
+            paint_Line_With_IntChords(pea.Graphics);
+        }
+
         #endregion
+
+        #region Lines_not_int_Chords
+
+
+        #endregion
+
+        private void PaintLineWithNotIntChords(Graphics g)
+        {
+            if (is_paint)
+            {
+                is_paint = false;
+
+                int x = 0;
+                int y = 0;
+                int a = (int)Math.Round(p_end_double.Key - p_begin_double.Key);
+                int b = (int)Math.Round(p_end_double.Value - p_begin_double.Value);
+                int x_mnoj = 1, y_mnoj = 1;
+                if (a < 0)
+                {
+                    a = -a;
+                    x_mnoj = -1;
+                }
+                if (b < 0)
+                {
+                    b = -b;
+                    y_mnoj = -1;
+                }
+                int c = 1000;
+                double dh = c / Math.Abs(p_end_double.Key - p_begin_double.Key);
+                // double h = dh*(1-p_begin_double.Key);
+                double h = 0;
+                double dv = c / Math.Abs(p_end_double.Value - p_begin_double.Value);
+                // double v = dv * (1 - p_begin_double.Value);
+                double v = 0;
+                while (h < c && v<c)
+                {
+                    Plot(g, x * x_mnoj + (int)Math.Round(p_begin_double.Key), y * y_mnoj + (int)Math.Round(p_begin_double.Value));
+                    if (h < v)
+                    {
+                        x++;
+                        h += dh;
+                    }
+                    else if (h > v)
+                    {
+                        y++;
+                        v += dv;
+                    }
+                    else
+                    {
+                        Plot(g, x * x_mnoj + (int)Math.Round(p_begin_double.Key), (y+1) * y_mnoj + (int)Math.Round(p_begin_double.Value));
+                        x++;
+                        y++;
+                        h += dh;
+                        v += dv;
+                    }
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                double x1 = double.Parse(txtBoxLNICH_x1.Text);
+                double y1 = double.Parse(txtBoxLNICH_y1.Text);
+
+                double x2 = double.Parse(txtBoxLNICH_x2.Text);
+                double y2 = double.Parse(txtBoxLNICH_y2.Text);
+
+                if (x1 < 0 || x1 >=panelLinesNotIntChords.Width || x2<0 || x2>=panelLinesNotIntChords.Width)
+                {
+                    MessageBox.Show("Х должен дыть в диапазоне от 0 до " + (panelLinesNotIntChords.Width-1));
+                    return;
+                }
+
+                if (y1 < 0 || y1 >= panelLinesNotIntChords.Height|| y2 < 0 || y2 >= panelLinesNotIntChords.Height)
+                {
+                    MessageBox.Show("Y должен дыть в диапазоне от 0 до " + (panelLinesNotIntChords.Height- 1));
+                    return;
+                }
+
+                if (rbInt.Checked)
+                {//Приближаем к целым значениям
+
+                    p_begin = new Point((int)Math.Round(x1),(int)Math.Round(y1));
+                    p_end =  new Point((int)Math.Round(x2), (int)Math.Round(y2));
+                    is_paint = true;
+                    panelLinesNotIntChords.Refresh();
+                }
+                if (rbNotInt.Checked)
+                {
+                    p_begin_double = new KeyValuePair<double, double>(x1, y1);
+                    p_end_double = new KeyValuePair<double, double>(x2, y2);
+                    is_paint = true;
+                    panelLinesNotIntChords.Refresh();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Invalid Input");
+            }
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+            if (rbInt.Checked)
+            {//Приближаем к целым значениям
+                paint_Line_With_IntChords(e.Graphics);
+            }
+            if (rbNotInt.Checked)
+            {
+                PaintLineWithNotIntChords(e.Graphics);
+            }
+        }
     }
 }
