@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GraphicsAlgosLaba.Algos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +15,7 @@ namespace GraphicsAlgosLaba
     {
 
         private bool is_begin;
-        private bool is_paint;
+        private bool is_drawing;
         private Point p_begin;
         private Point p_end;
 
@@ -26,16 +27,11 @@ namespace GraphicsAlgosLaba
             InitLinesWithIntChords();
         }
 
-        private void Plot(Graphics g, int x, int y)
-        {
-            g.DrawRectangle(new Pen(new SolidBrush(Color.Black)), x,y,1,1);
-        }
-
         #region Lines_Int_Chords
 
         private void InitLinesWithIntChords()
         {
-            is_paint = false;
+            is_drawing = false;
             is_begin = true;
         }
 
@@ -58,86 +54,23 @@ namespace GraphicsAlgosLaba
                 label1.Text = $"Начало=({p_begin.X}, {p_begin.Y})";
                 label2.Text = $"Конец=({p_end.X}, {p_end.Y})";
                 is_begin = true;
-                is_paint = true;
+                is_drawing = true;
                 panelLineWithIntChords.Refresh();
             }
         }
 
-        private void paint_Line_With_IntChords(Graphics g)
+        private void DrawLineWithIntCords(Graphics g)
         {
-            if (is_paint)
+            if (is_drawing)
             {
-                is_paint = false;
-                //e.Graphics.DrawLine(new Pen(new SolidBrush(Color.Black)),p_begin, p_end);
-
-                int x = 0;
-                int y = 0;
-                int a = p_end.X - p_begin.X;
-                int b = p_end.Y - p_begin.Y;
-                int x_mnoj = 1, y_mnoj = 1;
-                if (a < 0)
-                {
-                    a = -a;
-                    x_mnoj = -1;
-                }
-                if (b < 0)
-                {
-                    b = -b;
-                    y_mnoj = -1;
-                }
-                if (a > b)
-                {
-                    int e = 2 * b - a;
-                    int des = 2 * b;
-                    int ded = 2 * b - 2 * a;
-                    while (x < a)
-                    {
-
-                        Plot(g, x * x_mnoj + p_begin.X, y * y_mnoj + p_begin.Y);
-
-                        if (e > 0)
-                        {
-                            x++;
-                            y++;
-                            e += ded;
-                        }
-                        else
-                        {
-                            x++;
-                            e += des;
-                        }
-                    }
-                }
-                else
-                {
-                    int e = 2 * a - b;
-                    int des = 2 * a;
-                    int ded = 2 * a - 2 * b;
-                    while (x < a)
-                    {
-
-                        Plot(g, x * x_mnoj + p_begin.X, y * y_mnoj + p_begin.Y);
-
-                        if (e > 0)
-                        {
-                            x++;
-                            y++;
-                            e += ded;
-                        }
-                        else
-                        {
-                            y++;
-                            e += des;
-                        }
-                    }
-
-                }
+                is_drawing = false;
+                LineWithIntCords.Draw(g, p_begin, p_end);
             }
         }
 
         private void panel1_Paint(object sender, PaintEventArgs pea)
         {
-            paint_Line_With_IntChords(pea.Graphics);
+            DrawLineWithIntCords(pea.Graphics);
         }
 
         #endregion
@@ -147,56 +80,12 @@ namespace GraphicsAlgosLaba
 
         #endregion
 
-        private void PaintLineWithNotIntChords(Graphics g)
+        private void DrawLineWithNotIntCords(Graphics g)
         {
-            if (is_paint)
+            if (is_drawing)
             {
-                is_paint = false;
-
-                int x = 0;
-                int y = 0;
-                int a = (int)Math.Round(p_end_double.Key - p_begin_double.Key);
-                int b = (int)Math.Round(p_end_double.Value - p_begin_double.Value);
-                int x_mnoj = 1, y_mnoj = 1;
-                if (a < 0)
-                {
-                    a = -a;
-                    x_mnoj = -1;
-                }
-                if (b < 0)
-                {
-                    b = -b;
-                    y_mnoj = -1;
-                }
-                int c = 1000;
-                double dh = c / Math.Abs(p_end_double.Key - p_begin_double.Key);
-                // double h = dh*(1-p_begin_double.Key);
-                double h = 0;
-                double dv = c / Math.Abs(p_end_double.Value - p_begin_double.Value);
-                // double v = dv * (1 - p_begin_double.Value);
-                double v = 0;
-                while (h < c && v<c)
-                {
-                    Plot(g, x * x_mnoj + (int)Math.Round(p_begin_double.Key), y * y_mnoj + (int)Math.Round(p_begin_double.Value));
-                    if (h < v)
-                    {
-                        x++;
-                        h += dh;
-                    }
-                    else if (h > v)
-                    {
-                        y++;
-                        v += dv;
-                    }
-                    else
-                    {
-                        Plot(g, x * x_mnoj + (int)Math.Round(p_begin_double.Key), (y+1) * y_mnoj + (int)Math.Round(p_begin_double.Value));
-                        x++;
-                        y++;
-                        h += dh;
-                        v += dv;
-                    }
-                }
+                is_drawing = false;
+                LineWithRationalCords.Draw(g, p_begin_double, p_end_double);
             }
         }
 
@@ -227,14 +116,14 @@ namespace GraphicsAlgosLaba
 
                     p_begin = new Point((int)Math.Round(x1),(int)Math.Round(y1));
                     p_end =  new Point((int)Math.Round(x2), (int)Math.Round(y2));
-                    is_paint = true;
+                    is_drawing = true;
                     panelLinesNotIntChords.Refresh();
                 }
                 if (rbNotInt.Checked)
                 {
                     p_begin_double = new KeyValuePair<double, double>(x1, y1);
                     p_end_double = new KeyValuePair<double, double>(x2, y2);
-                    is_paint = true;
+                    is_drawing = true;
                     panelLinesNotIntChords.Refresh();
                 }
 
@@ -250,11 +139,11 @@ namespace GraphicsAlgosLaba
         {
             if (rbInt.Checked)
             {//Приближаем к целым значениям
-                paint_Line_With_IntChords(e.Graphics);
+                DrawLineWithIntCords(e.Graphics);
             }
             if (rbNotInt.Checked)
             {
-                PaintLineWithNotIntChords(e.Graphics);
+                DrawLineWithNotIntCords(e.Graphics);
             }
         }
     }
