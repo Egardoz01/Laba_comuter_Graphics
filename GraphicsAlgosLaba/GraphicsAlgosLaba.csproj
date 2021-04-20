@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algos\Circle.cs" />
     <Compile Include="Algos\LineWithIntCords.cs" />
     <Compile Include="Algos\LineWithRationalCords.cs" />
     <Compile Include="DrawingUtils.cs" />

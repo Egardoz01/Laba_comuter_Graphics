@@ -18,7 +18,8 @@ namespace GraphicsAlgosLaba
         private bool is_drawing;
         private Point p_begin;
         private Point p_end;
-
+        private Point center;
+        private int radius;
         private KeyValuePair<double,double> p_begin_double;
         private KeyValuePair<double, double> p_end_double;
         public MainForm()
@@ -144,6 +145,52 @@ namespace GraphicsAlgosLaba
             if (rbNotInt.Checked)
             {
                 DrawLineWithNotIntCords(e.Graphics);
+            }
+        }
+
+        private void btnDrawCircle_Click(object sender, EventArgs e)
+        {
+            is_drawing = true;
+            try
+            {
+                int x = int.Parse(txtBoxCircle_x.Text);
+                int y = int.Parse(txtBoxCircle_y.Text);
+                int r = int.Parse(txtBoxCircle_r.Text);
+
+                if (x < 0 || x >= panelCircle.Width)
+                {
+                    MessageBox.Show("Х должен дыть в диапазоне от 0 до " + (panelCircle.Width - 1));
+                    return;
+                }
+
+                if (y < 0 || y >= panelCircle.Height )
+                {
+                    MessageBox.Show("Y должен дыть в диапазоне от 0 до " + (panelCircle.Height - 1));
+                    return;
+                }
+                if (r <=0 || r > Math.Max(panelCircle.Height, panelCircle.Width))
+                {
+                    MessageBox.Show("R должен дыть в диапазоне от 0 до " + Math.Max(panelCircle.Height, panelCircle.Width));
+                }
+
+                center.X = x;
+                center.Y = y;
+                radius = r;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Invalid Input");
+            }
+
+            panelCircle.Refresh();
+        }
+
+        private void panelCircle_Paint(object sender, PaintEventArgs e)
+        {
+            if (is_drawing)
+            {
+                is_drawing = false;
+                Circle.Draw(e.Graphics, center.X, center.Y, radius);
             }
         }
     }

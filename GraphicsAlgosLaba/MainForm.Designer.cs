@@ -49,16 +49,29 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panelLinesNotIntChords = new System.Windows.Forms.Panel();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnDrawCircle = new System.Windows.Forms.Button();
+            this.txtBoxCircle_y = new System.Windows.Forms.TextBox();
+            this.txtBoxCircle_x = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.panelCircle = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtBoxCircle_r = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -97,7 +110,7 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Начало ";
             // 
-            // panel1
+            // panelLineWithIntChords
             // 
             this.panelLineWithIntChords.BackColor = System.Drawing.SystemColors.Control;
             this.panelLineWithIntChords.Location = new System.Drawing.Point(9, 7);
@@ -140,7 +153,7 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             // 
-            // radioButton1
+            // rbInt
             // 
             this.rbInt.AutoSize = true;
             this.rbInt.Checked = true;
@@ -152,7 +165,7 @@
             this.rbInt.Text = "Округлить до целого";
             this.rbInt.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rbNotInt
             // 
             this.rbNotInt.AutoSize = true;
             this.rbNotInt.Location = new System.Drawing.Point(12, 63);
@@ -162,24 +175,24 @@
             this.rbNotInt.Text = "Хитрый алгоритм";
             this.rbNotInt.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnDrawLineWithNotIntChords
             // 
             this.btnDrawLineWithNotIntChords.Location = new System.Drawing.Point(842, 348);
-            this.btnDrawLineWithNotIntChords.Name = "button1";
+            this.btnDrawLineWithNotIntChords.Name = "btnDrawLineWithNotIntChords";
             this.btnDrawLineWithNotIntChords.Size = new System.Drawing.Size(107, 23);
             this.btnDrawLineWithNotIntChords.TabIndex = 12;
             this.btnDrawLineWithNotIntChords.Text = "Нарисовать";
             this.btnDrawLineWithNotIntChords.UseVisualStyleBackColor = true;
             this.btnDrawLineWithNotIntChords.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox3
+            // txtBoxLNICH_y2
             // 
             this.txtBoxLNICH_y2.Location = new System.Drawing.Point(868, 182);
             this.txtBoxLNICH_y2.Name = "txtBoxLNICH_y2";
             this.txtBoxLNICH_y2.Size = new System.Drawing.Size(100, 20);
             this.txtBoxLNICH_y2.TabIndex = 11;
             // 
-            // textBox4
+            // txtBoxLNICH_x2
             // 
             this.txtBoxLNICH_x2.Location = new System.Drawing.Point(868, 151);
             this.txtBoxLNICH_x2.Name = "txtBoxLNICH_x2";
@@ -204,14 +217,14 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "X";
             // 
-            // textBox2
+            // txtBoxLNICH_y1
             // 
             this.txtBoxLNICH_y1.Location = new System.Drawing.Point(868, 85);
             this.txtBoxLNICH_y1.Name = "txtBoxLNICH_y1";
             this.txtBoxLNICH_y1.Size = new System.Drawing.Size(100, 20);
             this.txtBoxLNICH_y1.TabIndex = 7;
             // 
-            // textBox1
+            // txtBoxLNICH_x1
             // 
             this.txtBoxLNICH_x1.Location = new System.Drawing.Point(868, 54);
             this.txtBoxLNICH_x1.Name = "txtBoxLNICH_x1";
@@ -236,11 +249,11 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "X";
             // 
-            // Конец
+            // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(827, 120);
-            this.label8.Name = "Конец";
+            this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(44, 13);
             this.label8.TabIndex = 3;
             this.label8.Text = "Начало";
@@ -254,7 +267,7 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Начало";
             // 
-            // panel2
+            // panelLinesNotIntChords
             // 
             this.panelLinesNotIntChords.BackColor = System.Drawing.SystemColors.Control;
             this.panelLinesNotIntChords.Location = new System.Drawing.Point(8, 6);
@@ -262,6 +275,111 @@
             this.panelLinesNotIntChords.Size = new System.Drawing.Size(813, 561);
             this.panelLinesNotIntChords.TabIndex = 1;
             this.panelLinesNotIntChords.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.txtBoxCircle_r);
+            this.tabPage3.Controls.Add(this.label10);
+            this.tabPage3.Controls.Add(this.label9);
+            this.tabPage3.Controls.Add(this.btnDrawCircle);
+            this.tabPage3.Controls.Add(this.txtBoxCircle_y);
+            this.tabPage3.Controls.Add(this.txtBoxCircle_x);
+            this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Controls.Add(this.label14);
+            this.tabPage3.Controls.Add(this.panelCircle);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(992, 574);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Окружности";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnDrawCircle
+            // 
+            this.btnDrawCircle.Location = new System.Drawing.Point(850, 207);
+            this.btnDrawCircle.Name = "btnDrawCircle";
+            this.btnDrawCircle.Size = new System.Drawing.Size(107, 23);
+            this.btnDrawCircle.TabIndex = 27;
+            this.btnDrawCircle.Text = "Нарисовать";
+            this.btnDrawCircle.UseVisualStyleBackColor = true;
+            this.btnDrawCircle.Click += new System.EventHandler(this.btnDrawCircle_Click);
+            // 
+            // txtBoxCircle_y
+            // 
+            this.txtBoxCircle_y.Location = new System.Drawing.Point(867, 86);
+            this.txtBoxCircle_y.Name = "txtBoxCircle_y";
+            this.txtBoxCircle_y.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxCircle_y.TabIndex = 22;
+            // 
+            // txtBoxCircle_x
+            // 
+            this.txtBoxCircle_x.Location = new System.Drawing.Point(867, 55);
+            this.txtBoxCircle_x.Name = "txtBoxCircle_x";
+            this.txtBoxCircle_x.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxCircle_x.TabIndex = 21;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(826, 86);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(14, 13);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "Y";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(826, 63);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(14, 13);
+            this.label12.TabIndex = 19;
+            this.label12.Text = "X";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(826, 31);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(101, 13);
+            this.label14.TabIndex = 17;
+            this.label14.Text = "Центр окружности";
+            // 
+            // panelCircle
+            // 
+            this.panelCircle.BackColor = System.Drawing.SystemColors.Control;
+            this.panelCircle.Location = new System.Drawing.Point(7, 7);
+            this.panelCircle.Name = "panelCircle";
+            this.panelCircle.Size = new System.Drawing.Size(813, 561);
+            this.panelCircle.TabIndex = 16;
+            this.panelCircle.Paint += new System.Windows.Forms.PaintEventHandler(this.panelCircle_Paint);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(864, 124);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(43, 13);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "Радиус";
+            // 
+            // txtBoxCircle_r
+            // 
+            this.txtBoxCircle_r.Location = new System.Drawing.Point(867, 152);
+            this.txtBoxCircle_r.Name = "txtBoxCircle_r";
+            this.txtBoxCircle_r.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxCircle_r.TabIndex = 30;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(826, 152);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(15, 13);
+            this.label10.TabIndex = 29;
+            this.label10.Text = "R";
             // 
             // MainForm
             // 
@@ -278,6 +396,8 @@
             this.tabPage2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -305,6 +425,17 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TextBox txtBoxCircle_r;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnDrawCircle;
+        private System.Windows.Forms.TextBox txtBoxCircle_y;
+        private System.Windows.Forms.TextBox txtBoxCircle_x;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Panel panelCircle;
     }
 }
 
