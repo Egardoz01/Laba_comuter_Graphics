@@ -49,6 +49,7 @@
     <Compile Include="Algos\Circle.cs" />
     <Compile Include="Algos\LineWithIntCords.cs" />
     <Compile Include="Algos\LineWithRationalCords.cs" />
+    <Compile Include="Algos\Bizie.cs" />
     <Compile Include="DrawingUtils.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

@@ -22,10 +22,12 @@ namespace GraphicsAlgosLaba
         private int radius;
         private KeyValuePair<double,double> p_begin_double;
         private KeyValuePair<double, double> p_end_double;
+        private List<Point> points;
         public MainForm()
         {
             InitializeComponent();
             InitLinesWithIntChords();
+            InitBezie();
         }
 
         #region Lines_Int_Chords
@@ -36,10 +38,18 @@ namespace GraphicsAlgosLaba
             is_begin = true;
         }
 
+        private void InitBezie()
+        {
+            points = new List<Point>();
+            is_drawing = false;
+        }
+
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl1.SelectedIndex == 0)
                 InitLinesWithIntChords();
+            if (tabControl1.SelectedIndex == 3)
+                InitBezie();
         }
 
         private void panel1_MouseClick(object sender, MouseEventArgs e)
@@ -192,6 +202,36 @@ namespace GraphicsAlgosLaba
                 is_drawing = false;
                 Circle.Draw(e.Graphics, center.X, center.Y, radius);
             }
+        }
+
+        private void panelBezie_Paint(object sender, PaintEventArgs e)
+        {
+            if (is_drawing)
+            {
+                Bizie.Draw(e.Graphics, points);
+                is_drawing = false;
+
+                points.Clear();
+            }
+            else
+            {
+                foreach (var p in points)
+                {
+                    e.Graphics.DrawRectangle(new Pen(Color.Black, 2), p.X, p.Y, 1,  1);
+                }
+            }
+        }
+
+        private void panelBezie_MouseClick(object sender, MouseEventArgs e)
+        {
+            points.Add(new Point(e.X, e.Y));
+            panelBezie.Refresh();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            is_drawing = true;
+            panelBezie.Refresh();
         }
     }
 }

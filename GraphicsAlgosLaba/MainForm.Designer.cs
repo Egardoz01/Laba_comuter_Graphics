@@ -50,6 +50,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.panelLinesNotIntChords = new System.Windows.Forms.Panel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtBoxCircle_r = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.btnDrawCircle = new System.Windows.Forms.Button();
             this.txtBoxCircle_y = new System.Windows.Forms.TextBox();
             this.txtBoxCircle_x = new System.Windows.Forms.TextBox();
@@ -57,14 +60,15 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.panelCircle = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtBoxCircle_r = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.panelBezie = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -72,6 +76,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -296,6 +301,31 @@
             this.tabPage3.Text = "Окружности";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // txtBoxCircle_r
+            // 
+            this.txtBoxCircle_r.Location = new System.Drawing.Point(867, 152);
+            this.txtBoxCircle_r.Name = "txtBoxCircle_r";
+            this.txtBoxCircle_r.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxCircle_r.TabIndex = 30;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(826, 152);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(15, 13);
+            this.label10.TabIndex = 29;
+            this.label10.Text = "R";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(864, 124);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(43, 13);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "Радиус";
+            // 
             // btnDrawCircle
             // 
             this.btnDrawCircle.Location = new System.Drawing.Point(850, 207);
@@ -356,30 +386,37 @@
             this.panelCircle.TabIndex = 16;
             this.panelCircle.Paint += new System.Windows.Forms.PaintEventHandler(this.panelCircle_Paint);
             // 
-            // label9
+            // tabPage4
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(864, 124);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(43, 13);
-            this.label9.TabIndex = 28;
-            this.label9.Text = "Радиус";
+            this.tabPage4.Controls.Add(this.button1);
+            this.tabPage4.Controls.Add(this.panelBezie);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(992, 574);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Кривая безье";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // txtBoxCircle_r
+            // panelBezie
             // 
-            this.txtBoxCircle_r.Location = new System.Drawing.Point(867, 152);
-            this.txtBoxCircle_r.Name = "txtBoxCircle_r";
-            this.txtBoxCircle_r.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxCircle_r.TabIndex = 30;
+            this.panelBezie.BackColor = System.Drawing.SystemColors.Control;
+            this.panelBezie.Location = new System.Drawing.Point(8, 7);
+            this.panelBezie.Name = "panelBezie";
+            this.panelBezie.Size = new System.Drawing.Size(813, 561);
+            this.panelBezie.TabIndex = 17;
+            this.panelBezie.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBezie_Paint);
+            this.panelBezie.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelBezie_MouseClick);
             // 
-            // label10
+            // button1
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(826, 152);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(15, 13);
-            this.label10.TabIndex = 29;
-            this.label10.Text = "R";
+            this.button1.Location = new System.Drawing.Point(853, 337);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(89, 40);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Нарисовать ";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // MainForm
             // 
@@ -398,6 +435,7 @@
             this.groupBox1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -436,6 +474,9 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panelCircle;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panelBezie;
     }
 }
 
