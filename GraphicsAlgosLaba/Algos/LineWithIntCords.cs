@@ -54,7 +54,7 @@ namespace GraphicsAlgosLaba.Algos
                 int e = 2 * a - b;
                 int des = 2 * a;
                 int ded = 2 * a - 2 * b;
-                while (x < a)
+                while (y < b)
                 {
 
                     DrawingUtils.Plot(g, x * x_mnoj + p_begin.X, y * y_mnoj + p_begin.Y);

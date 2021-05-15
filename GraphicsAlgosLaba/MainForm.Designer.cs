@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControle1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -61,28 +61,35 @@
             this.label14 = new System.Windows.Forms.Label();
             this.panelCircle = new System.Windows.Forms.Panel();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.panelBezie = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
-            this.tabControl1.SuspendLayout();
+            this.panelBezie = new System.Windows.Forms.Panel();
+            this.tabOtsechAlgos = new System.Windows.Forms.TabPage();
+            this.panelSezerlendAlgo = new System.Windows.Forms.Panel();
+            this.rbSezerlendCOen = new System.Windows.Forms.RadioButton();
+            this.rbSredTochka = new System.Windows.Forms.RadioButton();
+            this.rbCirusBec = new System.Windows.Forms.RadioButton();
+            this.tabControle1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabOtsechAlgos.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tabControle1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1000, 600);
-            this.tabControl1.TabIndex = 0;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabControle1.Controls.Add(this.tabPage1);
+            this.tabControle1.Controls.Add(this.tabPage2);
+            this.tabControle1.Controls.Add(this.tabPage3);
+            this.tabControle1.Controls.Add(this.tabPage4);
+            this.tabControle1.Controls.Add(this.tabOtsechAlgos);
+            this.tabControle1.Location = new System.Drawing.Point(0, 0);
+            this.tabControle1.Name = "tabControle1";
+            this.tabControle1.SelectedIndex = 0;
+            this.tabControle1.Size = new System.Drawing.Size(1000, 600);
+            this.tabControle1.TabIndex = 0;
+            this.tabControle1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -398,16 +405,6 @@
             this.tabPage4.Text = "Кривая безье";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // panelBezie
-            // 
-            this.panelBezie.BackColor = System.Drawing.SystemColors.Control;
-            this.panelBezie.Location = new System.Drawing.Point(8, 7);
-            this.panelBezie.Name = "panelBezie";
-            this.panelBezie.Size = new System.Drawing.Size(813, 561);
-            this.panelBezie.TabIndex = 17;
-            this.panelBezie.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBezie_Paint);
-            this.panelBezie.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelBezie_MouseClick);
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(853, 337);
@@ -418,15 +415,81 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // panelBezie
+            // 
+            this.panelBezie.BackColor = System.Drawing.SystemColors.Control;
+            this.panelBezie.Location = new System.Drawing.Point(8, 7);
+            this.panelBezie.Name = "panelBezie";
+            this.panelBezie.Size = new System.Drawing.Size(813, 561);
+            this.panelBezie.TabIndex = 17;
+            this.panelBezie.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBezie_Paint);
+            this.panelBezie.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelBezie_MouseClick);
+            // 
+            // tabOtsechAlgos
+            // 
+            this.tabOtsechAlgos.Controls.Add(this.rbCirusBec);
+            this.tabOtsechAlgos.Controls.Add(this.rbSredTochka);
+            this.tabOtsechAlgos.Controls.Add(this.rbSezerlendCOen);
+            this.tabOtsechAlgos.Controls.Add(this.panelSezerlendAlgo);
+            this.tabOtsechAlgos.Location = new System.Drawing.Point(4, 22);
+            this.tabOtsechAlgos.Name = "tabOtsechAlgos";
+            this.tabOtsechAlgos.Padding = new System.Windows.Forms.Padding(3);
+            this.tabOtsechAlgos.Size = new System.Drawing.Size(992, 574);
+            this.tabOtsechAlgos.TabIndex = 4;
+            this.tabOtsechAlgos.Text = "Алгоритмы отсечения";
+            this.tabOtsechAlgos.UseVisualStyleBackColor = true;
+            // 
+            // panelSezerlendAlgo
+            // 
+            this.panelSezerlendAlgo.BackColor = System.Drawing.SystemColors.Control;
+            this.panelSezerlendAlgo.Location = new System.Drawing.Point(8, 3);
+            this.panelSezerlendAlgo.Name = "panelSezerlendAlgo";
+            this.panelSezerlendAlgo.Size = new System.Drawing.Size(800, 565);
+            this.panelSezerlendAlgo.TabIndex = 18;
+            this.panelSezerlendAlgo.Paint += new System.Windows.Forms.PaintEventHandler(this.panelSezerlendAlgo_Paint);
+            this.panelSezerlendAlgo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelSezerlendAlgo_MouseClick);
+            // 
+            // rbSezerlendCOen
+            // 
+            this.rbSezerlendCOen.AutoSize = true;
+            this.rbSezerlendCOen.Checked = true;
+            this.rbSezerlendCOen.Location = new System.Drawing.Point(814, 59);
+            this.rbSezerlendCOen.Name = "rbSezerlendCOen";
+            this.rbSezerlendCOen.Size = new System.Drawing.Size(172, 17);
+            this.rbSezerlendCOen.TabIndex = 19;
+            this.rbSezerlendCOen.TabStop = true;
+            this.rbSezerlendCOen.Text = "Алгоритм Сазерленда Коэна";
+            this.rbSezerlendCOen.UseVisualStyleBackColor = true;
+            // 
+            // rbSredTochka
+            // 
+            this.rbSredTochka.AutoSize = true;
+            this.rbSredTochka.Location = new System.Drawing.Point(814, 82);
+            this.rbSredTochka.Name = "rbSredTochka";
+            this.rbSredTochka.Size = new System.Drawing.Size(151, 17);
+            this.rbSredTochka.TabIndex = 20;
+            this.rbSredTochka.Text = "Алгоритм Средней точки";
+            this.rbSredTochka.UseVisualStyleBackColor = true;
+            // 
+            // rbCirusBec
+            // 
+            this.rbCirusBec.AutoSize = true;
+            this.rbCirusBec.Location = new System.Drawing.Point(814, 105);
+            this.rbCirusBec.Name = "rbCirusBec";
+            this.rbCirusBec.Size = new System.Drawing.Size(150, 17);
+            this.rbCirusBec.TabIndex = 21;
+            this.rbCirusBec.Text = "Алгоритм Кируса — Бека";
+            this.rbCirusBec.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1007, 606);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControle1);
             this.Name = "MainForm";
             this.Text = "Лаба по компьютерной графике, Климов";
-            this.tabControl1.ResumeLayout(false);
+            this.tabControle1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -436,13 +499,15 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            this.tabOtsechAlgos.ResumeLayout(false);
+            this.tabOtsechAlgos.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControle1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Panel panelLineWithIntChords;
@@ -477,6 +542,11 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panelBezie;
+        private System.Windows.Forms.TabPage tabOtsechAlgos;
+        private System.Windows.Forms.Panel panelSezerlendAlgo;
+        private System.Windows.Forms.RadioButton rbSredTochka;
+        private System.Windows.Forms.RadioButton rbSezerlendCOen;
+        private System.Windows.Forms.RadioButton rbCirusBec;
     }
 }
 

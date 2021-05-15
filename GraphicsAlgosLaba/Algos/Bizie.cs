@@ -29,7 +29,11 @@ namespace GraphicsAlgosLaba
                 t += dt;
             }
 
-            g.DrawLines(new Pen(Color.Red,2), v.ToArray());
+
+            foreach (var p in v)
+            {
+                g.DrawRectangle(new Pen(Color.Red, 2), p.X, p.Y, 1, 1);
+            }
         }
 
         private static int countF(int n)

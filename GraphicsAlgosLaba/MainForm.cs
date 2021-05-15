@@ -46,10 +46,12 @@ namespace GraphicsAlgosLaba
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 0)
+            if (tabControle1.SelectedIndex == 0)
                 InitLinesWithIntChords();
-            if (tabControl1.SelectedIndex == 3)
+            if (tabControle1.SelectedIndex == 3)
                 InitBezie();
+            if (tabControle1.SelectedIndex == 4)
+                InitLinesWithIntChords();
         }
 
         private void panel1_MouseClick(object sender, MouseEventArgs e)
@@ -232,6 +234,52 @@ namespace GraphicsAlgosLaba
         {
             is_drawing = true;
             panelBezie.Refresh();
+        }
+
+        private void panelSezerlendAlgo_Paint(object sender, PaintEventArgs e)
+        {
+            int h = panelSezerlendAlgo.Height;
+            int w = panelSezerlendAlgo.Width;
+            int x = (w - 300) / 2;
+            int y = (h - 200) / 2;
+            Rectangle r = new Rectangle(new Point(x, y), new Size(300, 200));
+            Otsechenia.DrawRect(e.Graphics, r);
+            if (is_drawing)
+            {
+                is_drawing = false;
+                if (rbSezerlendCOen.Checked)
+                    Otsechenia.SazerlendCoen(e.Graphics, r, p_begin, p_end);
+                if(rbSredTochka.Checked)
+                    Otsechenia.SredTochki(e.Graphics, r, p_begin, p_end);
+                if (rbCirusBec.Checked)
+                {
+                    List<PointF> points = new List<PointF>();
+                    points.Add(new PointF(x, y));
+                    points.Add(new PointF(x+300, y));
+                    points.Add(new PointF(x+300, y+200));
+                    points.Add(new PointF(x, y + 200));
+                    Polygon p = new Polygon(points);
+                    p.DrawCirusBec(e.Graphics, new Segment(p_begin, p_end));
+
+                }
+
+            }
+        }
+
+        private void panelSezerlendAlgo_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (is_begin)
+            {
+                is_begin = false;
+                p_begin = e.Location;
+            }
+            else
+            {
+                p_end = e.Location;
+                is_drawing = true;
+                panelSezerlendAlgo.Refresh();
+                is_begin = true;
+            }
         }
     }
 }
